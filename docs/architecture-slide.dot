@@ -1,0 +1,20 @@
+digraph ReturnRelay {
+ graph [rankdir=TB,bgcolor="#f5f8f7",fontname="Segoe UI",label="ReturnRelay 2.0: actual local architecture",labelloc=t];
+ node [shape=box,style="rounded,filled",fillcolor=white,color="#087b6c",fontname="Segoe UI"];
+ edge [color="#087b6c",fontname="Segoe UI",fontsize=10];
+ ui [label="Browser: accounts, evidence, guided return, tracking"];
+ host [label="FastAPI MCP host: session, ownership, CSRF, rules"];
+ evidence [label="Evidence MCP process: purchases, receipts, policies, refunds"];
+ calendar [label="Calendar MCP process: busy periods, free slots, conflicts"];
+ approval [label="Exact-plan human approval: evidence hash, expiry, HMAC",fillcolor="#e8f5ee"];
+ actions [label="Actions MCP process: verify, recheck, prepare idempotently"];
+ db [label="SQLite: owned application records, outputs, audit, protocol activity",shape=cylinder];
+ files [label="Private receipt files: authenticated downloads"];
+ outputs [label="Local EML + ICS: no email sent, no pickup booked"];
+ llm [label="Optional local Ollama: advisory explanations",style="rounded,dashed"];
+ ui -> host; host -> evidence [label="real MCP stdio",dir=both];
+ host -> calendar [label="real MCP stdio",dir=both];
+ host -> approval; approval -> actions [label="authorization over MCP"];
+ host -> db; evidence -> db; actions -> db; host -> files; actions -> outputs;
+ host -> llm [style=dashed,label="validated optional JSON"];
+}

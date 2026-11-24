@@ -1,0 +1,10 @@
+mcp==1.29.0
+fastapi==0.141.1
+uvicorn==0.52.1
+tzdata>=2025.1
+pypdf==7.1.1
+Pillow==13.0.0
+pytesseract==0.3.13
+python-multipart==0.0.34
+httpx==0.28.1
+python-dotenv==1.2.4

@@ -1,0 +1,21 @@
+digraph Workflow {
+ graph [rankdir=TB,bgcolor="#f5f8f7",label="ReturnRelay 2.0: evidence to verified progress",labelloc=t];
+ node [shape=box,style="rounded,filled",fillcolor=white,color="#087b6c"];
+ login [label="Register / sign in"];
+ receipt [label="Upload receipt: extract, review, confirm"];
+ policy [label="Evidence MCP: versioned policy and rule decision"];
+ check [label="Eligible with sufficient evidence?",shape=diamond];
+ stop [label="Explain stop / human review; save to tracking"];
+ calendar [label="Calendar MCP: free preparation slot, not pickup"];
+ plan [label="Persist exact draft, recipient, slot and effects"];
+ approve [label="Human approves?",shape=diamond];
+ reject [label="Cancel; no outputs"];
+ execute [label="Actions MCP: verify HMAC, expiry, receipt and policy\nAtomic local draft + reminder; replay safely"];
+ tracking [label="User records submission and merchant response"];
+ refund [label="Merchant reports processing: bank credit unverified"];
+ bank [label="User confirms uploaded bank evidence, amount and reference"];
+ login -> receipt -> policy -> check;
+ check -> stop [label="no"]; check -> calendar [label="yes"];
+ calendar -> plan -> approve; approve -> reject [label="no"];
+ approve -> execute [label="yes"]; execute -> tracking -> refund -> bank;
+}

@@ -1,0 +1,11 @@
+flowchart TD
+  UI[Browser: account and return workspace] --> Host[FastAPI MCP host]
+  Host <-->|Real MCP stdio| Evidence[Evidence process: purchases, policies, refunds]
+  Host <-->|Real MCP stdio| Calendar[Calendar process: slots and conflict checks]
+  Host --> Plan[Deterministic rules and exact plan]
+  Plan --> Human[Explicit human approval]
+  Human -->|Plan-bound HMAC over MCP| Actions[Actions process: verify and prepare]
+  Actions --> DB[(SQLite: owned records and audit)]
+  Actions --> Files[Local EML and ICS: nothing sent or booked]
+  Host --> Vault[Private uploaded documents]
+  Host -. optional advisory .-> LLM[Local Ollama: validated output]

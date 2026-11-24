@@ -1,0 +1,16 @@
+{
+  "as_of": "2026-11-24T10:00:00+05:30",
+  "orders": [
+    {"id":"RR-1042","item":"Everyday headphones","merchant":"DemoMart","amount_inr":2499,"delivered":"2026-11-19","policy_id":"POL-A","receipt_id":"MAIL-1042","receipt":"Order RR-1042. Everyday headphones. Paid INR 2499. Delivered 19 November 2026.","support":"returns@demomart.example"},
+    {"id":"RR-1043","item":"USB desk lamp","merchant":"DemoMart","amount_inr":899,"delivered":"2026-11-01","policy_id":"POL-A","receipt_id":"MAIL-1043","receipt":"Order RR-1043. USB desk lamp. Paid INR 899. Delivered 1 November 2026.","support":"returns@demomart.example"},
+    {"id":"RR-1044","item":"Wireless keyboard","merchant":"Sample Electronics","amount_inr":1799,"delivered":"2026-11-22","policy_id":"POL-B","receipt_id":"MAIL-1044","receipt":"Order RR-1044. Wireless keyboard. Paid INR 1799. Delivered 22 November 2026.","support":"care@electronics.example"},
+    {"id":"RR-1045","item":"Travel backpack","merchant":"Campus Goods","amount_inr":1299,"delivered":"2026-11-21","policy_id":"POL-C","receipt_id":"MAIL-1045","receipt":"Order RR-1045. Travel backpack. Paid INR 1299. Delivered 21 November 2026.","support":"care@campus.example"}
+  ],
+  "policies": {
+    "POL-A":{"version":1,"days":7,"type":"return","source_id":"POL-A-v1","text":"Demo policy: request a return by 23:59 Asia/Kolkata on delivery date plus 7 calendar days. Original packaging and all accessories required. A request is subject to merchant review. Refund timing is confirmed by the merchant."},
+    "POL-B":{"version":1,"days":7,"type":"replacement","source_id":"POL-B-v1","text":"Demo policy: replacement only within 7 calendar days for eligible defects. No return-for-refund option."},
+    "POL-C":{"version":1,"days":null,"type":"unknown","source_id":"POL-C-v1","text":"Demo policy: return eligibility and deadline must be confirmed with customer support."}
+  },
+  "busy": [{"start":"2026-11-24T17:00:00+05:30","end":"2026-11-24T18:00:00+05:30","label":"Class"}],
+  "refund_messages":[{"order_id":"RR-1042","source_id":"REFUND-DEMO-1","amount_inr":2499,"status":"merchant_says_processed","text":"Demo merchant says INR 2499 refund processed for RR-1042. This is not bank credit confirmation."}]
+}
