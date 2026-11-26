@@ -89,7 +89,11 @@ async def lifespan(app):
         yield
 
 app=FastAPI(title='ReturnRelay 2.0',version='2.0.0',lifespan=lifespan)
-app.add_middleware(TrustedHostMiddleware,allowed_hosts=['127.0.0.1','localhost','testserver'])
+allowed_hosts = ['127.0.0.1', 'localhost', 'testserver', 'returnrelay.onrender.com', '*.onrender.com']
+render_host = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if render_host and render_host not in allowed_hosts:
+    allowed_hosts.append(render_host)
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts)
 CSRF=secrets.token_urlsafe(32)
 @app.middleware('http')
 async def protect(request:Request,call_next):
